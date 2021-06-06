@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'docker-swarm' }
+    agent any
     stages {
         stage ('scm') {
             steps {
@@ -11,7 +11,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'docker_credentials', passwordVariable: 'password', usernameVariable: 'username')]) {
                     sh "docker login -u ${username} -p ${password}"
                 }
-                sh 'docker stack deploy --compose-file docker-stack.yml springboot'
+                sh 'sudo ansible-playbook docker_swarm_deploy.yml'
             }
         }
     }
