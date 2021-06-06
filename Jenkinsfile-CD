@@ -11,7 +11,8 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'docker_credentials', passwordVariable: 'password', usernameVariable: 'username')]) {
                     sh "docker login -u ${username} -p ${password}"
                 }
-                sh 'sudo ansible-playbook docker_swarm_deploy.yml'
+                sh '''sudo ansible-playbook install-docker.yml
+                      sudo ansible-playbook docker_swarm_deploy.yml'''
             }
         }
     }
