@@ -1,0 +1,13 @@
+---
+- hosts: webserver
+  tasks:
+  - name: copy file to opt directory
+    copy:
+      src: ./docker-stack.yml
+      dest: /opt
+  - name: Deploy stack from a compose file
+    docker_stack:
+      state: present
+      name: springboot
+      compose:
+        - /opt/docker-stack.yml
