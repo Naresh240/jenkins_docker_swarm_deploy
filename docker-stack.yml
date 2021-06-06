@@ -21,8 +21,5 @@ services:
       - 27017:27017
     networks:
       - springboot
-    deploy:
-      placement:
-        constraints: [node.role == manager]
 networks:
   springboot:
