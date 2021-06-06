@@ -1,0 +1,33 @@
+pipeline{
+    agent { 
+        docker {
+            image 'naresh240/docker-slave:latest'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }  
+    stages {
+        stage('git checkout'){
+            steps{
+                git branch: 'main', url: 'https://github.com/Naresh240/jenkins_docker_swarm_deploy.git'
+            }
+        }
+        stage('Build Maven'){
+            steps{
+                sh 'mvn clean install -DskipTests=true'
+            }
+        }
+        stage("Docker Image"){
+            steps{
+                sh "docker build -t naresh240/springboot-mongodb:latest ."
+            }
+        }
+        stage("Docker Push"){
+            steps{
+                withCredentials([usernamePassword(credentialsId: 'docker_credentials', passwordVariable: 'password', usernameVariable: 'username')]) {
+                    sh "docker login -u ${username} -p ${password}"
+                }
+                sh "docker push naresh240/springboot-mongodb:latest"
+            }
+        }
+    }        
+}
