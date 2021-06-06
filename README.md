@@ -47,6 +47,3 @@ Check API:- /findAllEmployees
 Goto Web UI and check below link
 
     http://<ip-address>:8080/findAllEmployees
-    
-# To down our springboot-mongodb application
-    docker-compose down
