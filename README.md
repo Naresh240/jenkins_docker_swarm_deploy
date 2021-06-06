@@ -9,7 +9,7 @@
 # Docker Swarm SetUp
   [Docker-Swarm](https://github.com/Naresh240/docker-swarm-setup.git)
 # Create Docker Swarm master as jenkins slave
-  ![Docker-Swarm-As-Jenkins-Slave](https://github.com/Naresh240/Jenkins-Master-Slave.git)
+  [Docker-Swarm-As-Jenkins-Slave](https://github.com/Naresh240/Jenkins-Master-Slave.git)
 # Jenkins docker swarm deploy
   Create jenkins jobs with Jenkinsfile content and click on build
 # Use postman app and Add Employee data
